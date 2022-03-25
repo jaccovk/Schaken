@@ -1,0 +1,76 @@
+﻿@model Schaken.Models.Partij
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Partij</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Dag" class="control-label"></label>
+                @*<select asp-for="Dag" class="form-control"></select>*@
+
+                <select asp-for="Dag" asp-items="Html.GetEnumSelectList<Dagen>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+
+                <span asp-validation-for="Dag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Uitslag" class="control-label"></label>
+                @*<select asp-for="Uitslag" class="form-control"></select>*@
+
+                <select asp-for="Uitslag" asp-items="Html.GetEnumSelectList<Uitslag>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+
+                <span asp-validation-for="Uitslag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpelerId" class="control-label"></label>
+                <select asp-for="SpelerId" class ="form-control" asp-items="ViewBag.SpelerId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@*<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Dag" class="control-label"></label>
+                <select asp-for="Dag" class="form-control"></select>
+                <span asp-validation-for="Dag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Uitslag" class="control-label"></label>
+                <select asp-for="Uitslag" class="form-control"></select>
+                <span asp-validation-for="Uitslag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpelerId" class="control-label"></label>
+                <select asp-for="SpelerId" class ="form-control" asp-items="ViewBag.SpelerId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>*@
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

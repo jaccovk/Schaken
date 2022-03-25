@@ -1,0 +1,51 @@
+﻿@using Microsoft.CodeAnalysis.CSharp.Syntax
+@model IEnumerable<Schaken.Models.Partij>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Partij Overzicht</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Speler)
+            </th>
+            @foreach (Dagen dag in Enum.GetValues(typeof(Dagen)))
+            {
+                <th>@dag</th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayFor(i => item.Speler.Naam)
+                </th>
+                @foreach (Dagen dag in Enum.GetValues(typeof(Dagen)))
+                {
+                    if (item == null)
+                    {
+                        <td><a asp-controller="Partij" asp-action="CreateSpecial" asp-route-Id="@item.Id" asp-route-dag="@dag">?</a></td>
+                    }
+                    else
+                    {
+                        <td>@item.Uitslag</td>
+                    }
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>
+@*<p>
+    <form asp-action="Create">
+        <button class="btn btn-primary">Partij Toevoegen</button>
+    </form>
+</p>*@

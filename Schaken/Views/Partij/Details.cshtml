@@ -1,0 +1,36 @@
+﻿@model Schaken.Models.Partij
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Partij</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Dag)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Dag)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Uitslag)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Uitslag)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Speler)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Speler.Naam)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

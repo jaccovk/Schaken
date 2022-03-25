@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Schaken.Models.Speler>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Spelerlijst</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Naam)
+        </th>
+        @foreach (Dagen dag in Enum.GetValues(typeof(Dagen)))
+        {
+            <th>@dag</th>
+        }
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naam)
+            </td>
+            @*@foreach (Dagen dag in Enum.GetValues(typeof(Dagen)))
+        {
+            <td>?</td>
+        }*@
+
+            @foreach (Dagen dag in Enum.GetValues(typeof(Dagen)))
+            {
+                Partij partij = item.Partijen.FirstOrDefault(p => p.Dag == dag);
+                if (partij == null)
+                {
+                    @*<td>?</td>*@
+                    @*<td> @Html.ActionLink("?", "CreateSpecial", "Partij", new { Id = item.Id, dag = dag }, null) </td>*@
+                    <td><a asp-controller="Partij" asp-action="CreateSpecial" asp-route-Id="@item.Id" asp-route-dag="@dag">?</a></td>
+                }
+                else
+                {
+                    <td>@partij.Uitslag</td>
+                }
+            }
+        </tr>
+    }
+    </tbody>
+</table>
+
+<p>
+    <form asp-action="Create">
+        <button class="btn btn-primary">Speler Toevoegen</button>
+    </form>
+</p>
